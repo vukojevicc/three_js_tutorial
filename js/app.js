@@ -16,4 +16,9 @@ function init(){
 function smoothScroll(){
     target = window.scrollY;
     current = lerp(current, target, ease);
+    scrollable.style.transform = `translateY(${-current}px)`;
+    requestAnimationFrame(smoothScroll);
 }
+
+init();
+smoothScroll();
