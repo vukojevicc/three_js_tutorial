@@ -28,6 +28,28 @@ function smoothScroll(){
 class EffectCanvas{
     constructor(){
         this.container = document.querySelector('main');
+        this.images = [...document.querySelectorAll('img')];
+        this.meshItems = []; // used to store all meshes we will be creating
+        this.setupCamera();
+        this.createMeshItems();
+        this.render();
+    }
+
+    get viewport(){
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        let aspectRatio = width / height;
+        
+        return {
+            width,
+            height,
+            aspectRatio
+        }
+    }
+
+    setupCamera(){
+
+        window.addEventListener('resize')
     }
 }
 
