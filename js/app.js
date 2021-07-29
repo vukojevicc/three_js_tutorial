@@ -1,7 +1,5 @@
 import * as THREE from 'three';
 
-// const scene = new THREE.Scene();
-
 const scrollable = document.querySelector('.scrollable');
 
 let current = 0;
@@ -26,12 +24,12 @@ function smoothScroll(){
 }
 
 class EffectCanvas{
-    constructor(){
+    constructor(){ // funkcija koja kreira svojstva (properties) za svaki novi objekat
         this.container = document.querySelector('main');
-        this.images = [...document.querySelectorAll('img')];
+        this.images = [...document.querySelectorAll('img')]; // koristim spread operator kako bih nodeList pretvorio i niz i tako lakse pristupio img elementima
         this.meshItems = []; // used to store all meshes we will be creating
         this.setupCamera();
-        this.createMeshItems();
+        this.createMeshItems(); // pozivanje funkcija pri kreiranju novog objekta. Sve funkcije su deklarisanje ispod konstruktora u klasi.
         this.render();
     }
 
@@ -49,7 +47,13 @@ class EffectCanvas{
 
     setupCamera(){
 
-        window.addEventListener('resize')
+        window.addEventListener('resize', this.onWindowResize.bind(this));
+
+        this.scene = new THREE.Scene();
+
+        // perspective camera
+        let perspective = 1000;
+        const fov = (180 * (2 * Math.atan()))
     }
 }
 
