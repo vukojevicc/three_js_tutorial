@@ -53,7 +53,7 @@ class EffectCanvas{
 
         // perspective camera
         let perspective = 1000;
-        const fov = (180 * (2 * Math.atan()))
+        const fov = (180 * (2 * Math.atan(window.innerHeight / 2 / perspective))) // field of view
     }
 }
 
