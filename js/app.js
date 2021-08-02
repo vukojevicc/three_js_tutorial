@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-const scrollable = document.querySelector('.scrollable');
+let scrollable = document.querySelector('.scrollable');
 
 let current = 0;
 let target = 0;
@@ -53,9 +53,27 @@ class EffectCanvas{
 
         // perspective camera
         let perspective = 1000;
-        const fov = (180 * (2 * Math.atan(window.innerHeight / 2 / perspective))) // field of view
+        const fov = (180 * (2 * Math.atan(window.innerHeight / 2 / perspective))) / Math.PI; // field of view. Dobijanje ugla iz kog se gleda izrazenog u stepenima (pogledati sliku fov.png). Nacin dobijanja: Prvo se racuna tangens od polovine ugla (window.innerHeight / 2 / perspective) iz kog se gleda (pomocu formule za dobijanje tangensa opposite / adjacent). Zatim se dobijeni ugao mnozi sa dva jer smo dobili samo pola ugla formulom. Zatim se dobijeni radijani koje vraca funkcija Math.atan() konvertuju u stepene funkcijom = radijan * 180 / Math.PI
+        this.camera = new THREE.PerspectiveCamera(fov, this.viewport.aspectRatio, 1, 1000);
+        this.camera.position.set(0, 0, perspective);
+
+        this.renderer = new THREE.WebGL1Renderer({
+            antialias: true, // zaobljuje ivice meshova
+            alpha: true, // providan canvas
+        });
+        this.renderer.setSize(this.viewport.width, this.viewport.height);
+        this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.container.appendChild(this.renderer.domElement);
+    }
+
+    onWindowResize() {
+        init();
+        this.camera.aspect = this.viewport.aspectRatio;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(this.viewport.width, this.viewport.height);
     }
 }
 
 init();
 smoothScroll();
+new EffectCanvas();

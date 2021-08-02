@@ -1,7 +1,6 @@
 {
   "name": "three_js_tutorial",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,5 +12,15 @@
   "dependencies": {
     "live-server": "^1.2.1",
     "three": "^0.130.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vukojevicc/three_js_tutorial.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vukojevicc/three_js_tutorial/issues"
+  },
+  "homepage": "https://github.com/vukojevicc/three_js_tutorial#readme",
+  "description": ""
 }
